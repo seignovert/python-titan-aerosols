@@ -1,20 +1,24 @@
 ===============================
-Aerosols scattering model
+Titan aerosols models
 ===============================
 |Build| |Coverage| |PyPI| |Status| |Version| |Python| |License|
 
-.. |Build| image:: https://travis-ci.org/seignovert/python-aerosols-scattering.svg?branch=master
-        :target: https://travis-ci.org/seignovert/python-aerosols-scattering
-.. |Coverage| image:: https://coveralls.io/repos/github/seignovert/python-aerosols-scattering/badge.svg?branch=master
-        :target: https://coveralls.io/github/seignovert/python-aerosols-scattering?branch=master
+.. |Build| image:: https://travis-ci.org/seignovert/python-titan-aerosols.svg?branch=master
+        :target: https://travis-ci.org/seignovert/python-titan-aerosols
+.. |Coverage| image:: https://coveralls.io/repos/github/seignovert/python-titan-aerosols/badge.svg?branch=master
+        :target: https://coveralls.io/github/seignovert/python-titan-aerosols?branch=master
 .. |PyPI| image:: https://img.shields.io/badge/PyPI-aerosols--scattering-blue.svg
-        :target: https://pypi.python.org/project/aerosols-scattering
-.. |Status| image:: https://img.shields.io/pypi/status/aerosols-scattering.svg?label=Status
-.. |Version| image:: https://img.shields.io/pypi/v/aerosols-scattering.svg?label=Version
-.. |Python| image:: https://img.shields.io/pypi/pyversions/aerosols-scattering.svg?label=Python
-.. |License| image:: https://img.shields.io/pypi/l/aerosols-scattering.svg?label=License
+        :target: https://pypi.python.org/project/titan-aerosols
+.. |Status| image:: https://img.shields.io/pypi/status/titan-aerosols.svg?label=Status
+        :target: https://pypi.python.org/project/titan-aerosols
+.. |Version| image:: https://img.shields.io/pypi/v/titan-aerosols.svg?label=Version
+        :target: https://pypi.python.org/project/titan-aerosols
+.. |Python| image:: https://img.shields.io/pypi/pyversions/titan-aerosols.svg?label=Python
+        :target: https://pypi.python.org/project/titan-aerosols
+.. |License| image:: https://img.shields.io/pypi/l/titan-aerosols.svg?label=License
+        :target: https://pypi.python.org/project/titan-aerosols
 
-Python package for Titan's aerosols scattering
+Python package for Titan's aerosols models
 
 Install
 -------
@@ -22,14 +26,14 @@ With ``pip``:
 
 .. code:: bash
 
-    $ pip install aerosols-scattering
+    $ pip install titan-aerosols
 
-Or the ``source files``:
+Or directly from the ``source files``:
 
 .. code:: bash
 
-    $ git clone https://github.com/seignovert/python-aerosols-scattering.git
-    $ cd aerosols-scattering ; python setup.py install
+    $ git clone https://github.com/seignovert/python-titan-aerosols.git
+    $ cd python-titan-aerosols ; python setup.py install
 
 Usage
 ------

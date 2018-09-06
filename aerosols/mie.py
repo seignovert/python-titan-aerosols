@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from .tholins_CVD import tholins_CVD as tholins
 
 NANG = 91
 NMXX = 150e3
@@ -185,7 +184,7 @@ def mie(wvln, nr, ni, r, nang=NANG):
         nr   (float)    Particule real optical index ()
         ni   (float)    Particule real imaginary index ()
         r    (float)    Particule radius (m)
-        nang (int)      Number of angles for the phase function 
+        [nang] (int)    Number of angles for the phase function 
                          (range from 0 to pi/2)
 
     Outputs
@@ -208,10 +207,4 @@ def mie(wvln, nr, ni, r, nang=NANG):
     norm = .5 * np.trapz(S11*np.sin(theta), x=theta)
     P = S11/norm
     return qsct, qext, qabs, gg, theta, P
-
-
-def mie_tholins(wvln, r, nang=NANG):
-    """Mie cross-sections and phase function for tholin particule"""
-    nr, ni = tholins(wvln)
-    return mie(wvln, nr, ni, r, nang)
 

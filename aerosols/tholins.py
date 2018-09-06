@@ -6,6 +6,8 @@ import sys
 import sqlite3 as sqlite
 import numpy as np
 
+from .mie import NANG, mie
+
 DB_NAME = 'optical_index.db'
 TABLE = 'Tholins_CVD'
 
@@ -47,14 +49,15 @@ class Database(object):
         return self.db.execute(cmd)
 
 
-def tholins_CVD(wvln, db=Database()):
+def index_tholins(wvln, db=Database()):
         """
         Get laboratory produced optical index constant for tholins aerosols at
         a specific wavelength.
         
         Input
         ------
-            wvln (float) Wavelength in meter
+            wvln (float)    Wavelength in meter
+            [db] (object)   Optical index database
 
         Output
         -------
@@ -110,3 +113,28 @@ def tholins_CVD(wvln, db=Database()):
         if wvln >= .935 and wvln <= 1.5:
             ni = 7.19e-3
         return nr, ni
+
+def mie_tholins(wvln, r, db=Database(), nang=NANG):
+    """
+    Mie cross-sections and phase function for tholin particule.
+    Use default tholins indexes (CVD).
+
+    Input
+    ------
+        wvln (float)    Wavelength (m)
+        r    (float)    Particule radius (m)
+        [nang] (int)    Number of angles for the phase function 
+                         (range from 0 to pi/2)
+        [db] (object)   Optical index database
+
+    Outputs
+    --------
+        qsct  (float)    Scattering cross section (m^-2)
+        qext  (float)    Extinction cross section (m^-2)
+        qabs  (float)    Absorption cross section (m^-2)
+        gg    (float)    Asymmetry parameter
+        theta (float[])  Phase function angles (radians)
+        P     (float[])  Phase function ()
+    """
+    nr, ni = index_tholins(wvln, db)
+    return mie(wvln, nr, ni, r, nang)

@@ -5,7 +5,14 @@ Optical index database
 Laboratory produced optical index constant for tholins aerosols.
 
 > __Note:__
-> The values are extrapolated as comstant for wavelengths above 314.0367 &micro;m and below 20 nm.
+> The values are extrapolated as constant for wavelengths
+> above 314 &micro;m and below 20 nm.
+>
+> In between, the real part is linear interpolated and
+> the imaginary part is LOG interpolated.
+>
+> Between 935 nm and 1.5 um, the bump of the imaginary part is
+> removed and fixed at 7.19e-3.
 
 Authors:
 ---------

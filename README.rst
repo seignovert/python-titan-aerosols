@@ -24,7 +24,7 @@ With ``pip``:
 
     $ pip install aerosols-scattering
 
-With the ``source files``:
+Or the ``source files``:
 
 .. code:: bash
 

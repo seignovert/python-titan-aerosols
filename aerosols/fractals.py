@@ -1,6 +1,4 @@
-#!/bin/python
 # -*- coding: utf-8 -*-
-
 import numpy as np
 
 from .mie import NANG, mie_bohren_huffman

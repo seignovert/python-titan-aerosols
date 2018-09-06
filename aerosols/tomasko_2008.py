@@ -7,7 +7,7 @@
 
 import numpy as np
 
-from bhmie import bhmie
+from .bhmie import bhmie
 
 def tomasko2008(Df,N,Xm,nr,ni,nang,force=False):
     #----------------------------------------
@@ -200,4 +200,4 @@ if __name__ == '__main__':
 
     Qs,Qa,Qe,P11,P22,P33,P44,P21,P43 = tomasko2008(Df,N,Xm,nr,ni,nang)
     for ii in range(len(P11)):
-        print "%i\t%.2e" % (ii,P11[ii] * Qs )
+        print("%i\t%.2e" % (ii,P11[ii] * Qs ))

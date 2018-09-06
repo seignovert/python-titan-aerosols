@@ -2,17 +2,19 @@
 ##> Compute optical index constants based on laboratory experience 
 ## @details   Contains only a subroutine that computes (from sql tables)
 ##            refractive indexes for Tholin, CH4 and C2H6.
-## @author    B. Seignovert (univ-reims@seignovert.fr)
-## @version   1.0
-## @date      2016/07/15
+## @author    B. Seignovert (research@seignovert.fr)
 # -*- coding: utf-8 -*-
 
 # --------
 # Imports
 # --------
+import os
+import sys
 import sqlite3 as sqlite
 import numpy as np
-import os,sys
+
+DB_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data', 'optical_index.db')
+
 
 class OpticalIndex:
     def __init__(self,root,name):
@@ -28,29 +30,29 @@ class OpticalIndex:
 
     def get(self,wvln,table='Tholins_CVD'): # wvln in [m]
         """ @details The method computes the optical constants of laboratory produced
-                     for @bti{waveln}. Above (\>314um) and below (\<20um) the data, values 
+                     for wvln. Above (>314um) and below (<20nm) the data, values 
                      are extrapolated as constant. """
 
         # Check if table exists
-        self.cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='%s'" % table);
+        self.cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='%s'" % table)
         if not self.cursor.fetchone(): raise AttributeError("Index table unknown in db (received table=%s)" % table)
         
         # Values SUP
-        self.cursor.execute("SELECT wvln,nr,ni FROM %s WHERE wvln >= %f ORDER BY wvln ASC  LIMIT 1;" % (table,wvln*1.e6) )
+        self.cursor.execute("SELECT wvln,nr,ni FROM %s WHERE wvln >= %f ORDER BY wvln ASC  LIMIT 1;" % (table, wvln*1.e6) )
         try: wvln_sup,nr_sup, ni_sup = self.cursor.fetchone()
         except TypeError:
             self.cursor.execute("SELECT MAX(wvln),nr,ni FROM %s" % table )
             wvln_max,nr,ni = self.cursor.fetchone()
-            print (">>WARNING: wvln = %.3e m > wvln_max_db = %.3e m => extrapolation cst" % (wvln,wvln_max*1.e-6) )
+            print (">>WARNING: wvln = %.3e m > wvln_max_db = %.3e m => extrapolation cst" % (wvln, wvln_max*1.e-6) )
             return nr,ni
 
         # Values INF
-        self.cursor.execute("SELECT wvln,nr,ni FROM %s WHERE wvln <= %f ORDER BY wvln DESC LIMIT 1;" % (table,wvln*1.e6) )
+        self.cursor.execute("SELECT wvln,nr,ni FROM %s WHERE wvln <= %f ORDER BY wvln DESC LIMIT 1;" % (table, wvln*1.e6) )
         try: wvln_inf,nr_inf, ni_inf = self.cursor.fetchone()
         except TypeError:
             self.cursor.execute("SELECT MIN(wvln),nr,ni FROM %s" % table )
             wvln_min,nr,ni = self.cursor.fetchone()
-            print (">>WARNING: wvln = %.3e m < wvln_min_db = %.3e m => extrapolation cst" % (wvln,wvln_min*1.e-6) )
+            print (">>WARNING: wvln = %.3e m < wvln_min_db = %.3e m => extrapolation cst" % (wvln, wvln_min*1.e-6) )
             return nr,ni
 
         #Interpolation
@@ -62,11 +64,11 @@ class OpticalIndex:
         return nr,ni
             
 if __name__ == '__main__':
-    index_db = OpticalIndex('','optical_index.db')
+    index_db = OpticalIndex('data/','optical_index.db')
 
     if (len(sys.argv) == 2):
-        print index_db.get( float(sys.argv[1]) )
+        print(index_db.get( float(sys.argv[1]) ))
         
     elif (len(sys.argv) == 3):
-        print index_db.get( float(sys.argv[1]), sys.argv[2] )
+        print(index_db.get( float(sys.argv[1]), sys.argv[2] ))
  

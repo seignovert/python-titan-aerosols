@@ -196,23 +196,23 @@ if __name__ == '__main__':
     nr   = 1.6349870952056371    # Example: Tholins @340 nm (Cassini-ISS: UV3 filter)
     ni   = 0.16817711180530326
     
-    print "# wvln: %.1f nm" % wvln
-    print "# r   : %.1f nm" % r
-    print "# nr  : %.2f"    % nr
-    print "# ni  : %.2f"    % ni
+    print("# wvln: %.1f nm" % wvln)
+    print("# r   : %.1f nm" % r)
+    print("# nr  : %.2f"    % nr)
+    print("# ni  : %.2f"    % ni)
 
     nang = 91
     Xm   = 2. * pi * r / wvln
 
-    print "# Xm  : %.2f" % Xm
-    print "#-----------------"
+    print("# Xm  : %.2f" % Xm)
+    print("#-----------------")
     
     qsct,qext,qabs,_,theta,pdp = mie(wvln,nr,ni,r,nang)
 
-    print "# qsct: %.2e" % qsct
-    print "# qext: %.2e" % qext
-    print "# qabs: %.2e" % qabs
-    print "#-----------------"
+    print("# qsct: %.2e" % qsct)
+    print("# qext: %.2e" % qext)
+    print("# qabs: %.2e" % qabs)
+    print("#-----------------")
     
     for ii in range(len(pdp)):
-        print "%i\t%.2e" % ( theta[ii], pdp[ii] )
+        print("%i\t%.2e" % ( theta[ii], pdp[ii] ))

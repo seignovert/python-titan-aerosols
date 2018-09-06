@@ -10,7 +10,7 @@ DB_NAME = 'optical_index.db'
 TABLE = 'Tholins_CVD'
 
 class Database(object):
-    """Optical indexes constant database""""
+    """Optical indexes constant database"""
     def __init__(self, name=DB_NAME, table=TABLE):
         self.set_db(name)
         self.set_table(table)

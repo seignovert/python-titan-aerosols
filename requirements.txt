@@ -1,2 +1,2 @@
 numpy
-sqlite3
+argparse

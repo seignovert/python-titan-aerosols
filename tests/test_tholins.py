@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from aerosols.tholins import Database, index_tholins, mie_tholins
+from aerosols.tholins import Database, index_tholins, mie_tholins, fractals_tholins
 
 def test_database_not_exists():
     with pytest.raises(IOError):
@@ -17,9 +17,9 @@ def test_known_wvln():
     assert ni == 0.389
 
 def test_interpolation_wvln():
-    nr, ni = index_tholins(30e-9)
-    assert nr == 0.8568122639904139
-    assert ni == 0.17585834352774574
+    nr, ni = index_tholins(338e-9)
+    assert round(nr, 2) == 1.64
+    assert round(ni, 2) == 0.17
 
 def test_ni_1um():
     nr, ni = index_tholins(0.9924e-6)
@@ -46,3 +46,27 @@ def test_mie():
     assert P[-1] == 0.7154853574567827
 
     
+def test_fractals():
+    qsct, qext, qabs, gg, theta, P = fractals_tholins(338e-9, 60e-9, 2.0, 266)
+    assert abs(qsct - 2.9e-12) < 0.1e-12
+    assert abs(qext - 4.2e-12) < 0.1e-12
+    assert abs(qabs - 1.3e-12) < 0.1e-12
+    assert abs(P[0] - 185.8) < 0.1
+    assert abs(P[1] - 178.1) < 0.1
+    assert abs(P[2] - 157.2) < 0.1
+    assert abs(P[4] - 98.9) < 0.1
+    assert abs(P[6] - 52.6) < 0.1
+    assert abs(P[8] - 28.4) < 0.1
+    assert abs(P[10] - 17.4) < 0.1
+    assert abs(P[15] - 8.0) < 0.1
+    assert abs(P[20] - 4.7) < 0.1
+    assert abs(P[30] - 2.2) < 0.1
+    assert abs(P[40] - 1.1) < 0.1
+    assert abs(P[50] - 0.58) < 0.01
+    assert abs(P[60] - 0.36) < 0.01
+    assert abs(P[80] - 0.21) < 0.01
+    assert abs(P[100] - 0.144) < 0.001
+    assert abs(P[120] - 0.117) < 0.001
+    assert abs(P[140] - 0.112) < 0.001
+    assert abs(P[160] - 0.115) < 0.001
+    assert abs(P[180] - 0.117) < 0.001

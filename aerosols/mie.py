@@ -8,7 +8,7 @@ NMXX = 150e3
 
 def mie_bohren_huffman(x, refrel, nang=NANG):
     """
-    Compute mie scattering based on Bohren and Huffman theory  
+    Compute mie scattering based on Bohren and Huffman theory
 
     Input
     ------
@@ -176,7 +176,8 @@ def mie_bohren_huffman(x, refrel, nang=NANG):
 
 def mie(wvln, nr, ni, r, nang=NANG):
     """
-    Compute based on Mie cross-sections and phase function
+    Compute Mie cross-sections and phase function based
+        on Bohren and Huffman theory
 
     Input
     ------

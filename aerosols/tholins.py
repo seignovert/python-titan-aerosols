@@ -7,6 +7,7 @@ import sqlite3 as sqlite
 import numpy as np
 
 from .mie import NANG, mie
+from .fractals import FORCE, fractals
 
 DB_NAME = 'optical_index.db'
 TABLE = 'Tholins_CVD'
@@ -114,10 +115,11 @@ def index_tholins(wvln, db=Database()):
             ni = 7.19e-3
         return nr, ni
 
-def mie_tholins(wvln, r, db=Database(), nang=NANG):
+
+def mie_tholins(wvln, r, nang=NANG, db=Database()):
     """
     Mie cross-sections and phase function for tholin particule.
-    Use default tholins indexes (CVD).
+    Use default tholins indexes (CVD) and Bohren and Huffman theory.
 
     Input
     ------
@@ -138,3 +140,32 @@ def mie_tholins(wvln, r, db=Database(), nang=NANG):
     """
     nr, ni = index_tholins(wvln, db)
     return mie(wvln, nr, ni, r, nang)
+
+
+def fractals_tholins(wvln, rm, Df, N, nang=NANG, force=FORCE, db=Database()):
+    """
+    Fractals cross-sections and phase function for tholin aggregate.
+    Use default tholins indexes (CVD) and Tomasko et al. 2008.
+
+    Input
+    ------
+        wvln    (float) Wavelength (m)
+        rm      (float) Monomer radius (m)
+        Df      (float) Fractal dimension ()
+        N       (int)   Number of monomers ()
+        [nang]  (int)   Number of angles for the phase function
+                         (range from 0 to pi/2)
+        [force] (bool)  Bypass validity checks
+        [db] (object)   Optical index database
+
+    Outputs
+    --------
+        qsct  (float)    Scattering cross section (m^-2)
+        qext  (float)    Extinction cross section (m^-2)
+        qabs  (float)    Absorption cross section (m^-2)
+        gg    (float)    Asymmetry parameter
+        theta (float[])  Phase function angles (radians)
+        P     (float[])  Phase function ()
+    """
+    nr, ni = index_tholins(wvln, db)
+    return fractals(wvln, nr, ni, rm, Df, N, nang, force)

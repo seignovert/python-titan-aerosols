@@ -149,8 +149,8 @@ def fractals_tholins(wvln, rm, Df, N, nang=NANG, force=FORCE, db=Database()):
     ------
         wvln    (float) Wavelength (m)
         rm      (float) Monomer radius (m)
-        Df      (float) Fractal dimension ()
-        N       (int)   Number of monomers ()
+        Df      (float) Fractal dimension
+        N       (int)   Number of monomers
         [nang]  (int)   Number of angles for the phase function
                          (range from 0 to pi/2)
         [force] (bool)  Bypass validity checks

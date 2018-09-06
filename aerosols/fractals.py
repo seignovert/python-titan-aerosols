@@ -12,11 +12,11 @@ def fractals_tomasko_2008(Df, N, Xm, nr, ni, nang=NANG, force=FORCE):
 
     Input
     ------
-        Df      (float) Fractal dimension ()
-        N       (int)   Number of monomers ()
+        Df      (float) Fractal dimension
+        N       (int)   Number of monomers
         Xm      (float) Monomer size parameter (m)
-        nr      (float) Particule real optical index ()
-        ni      (float) Particule real imaginary index ()
+        nr      (float) Particule real optical index
+        ni      (float) Particule real imaginary index
         [nang]  (int)   Number of angles for the phase function
                          (range from 0 to pi/2)
         [force] (bool)  Bypass validity checks
@@ -225,11 +225,11 @@ def fractals(wvln, nr, ni, rm, Df, N, nang=NANG, force=FORCE):
     Input
     ------
         wvln    (float) Wavelength (m)
-        nr      (float) Particule real optical index ()
-        ni      (float) Particule real imaginary index ()
+        nr      (float) Particule real optical index
+        ni      (float) Particule real imaginary index
         rm      (float) Monomer radius (m)
-        Df      (float) Fractal dimension ()
-        N       (int)   Number of monomers ()
+        Df      (float) Fractal dimension
+        N       (int)   Number of monomers
         [nang]  (int)   Number of angles for the phase function
                          (range from 0 to pi/2)
         [force] (bool)  Bypass validity checks
@@ -241,7 +241,7 @@ def fractals(wvln, nr, ni, rm, Df, N, nang=NANG, force=FORCE):
         qabs  (float)    Absorption cross section (m^-2)
         gg    (float)    Asymmetry parameter
         theta (float[])  Phase function angles (radians)
-        P     (float[])  Phase function ()
+        P     (float[])  Phase function
     """
     Xm = 2. * np.pi * rm / wvln
 

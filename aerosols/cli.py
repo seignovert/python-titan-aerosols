@@ -13,14 +13,14 @@ Use default tholins indexes (CVD) and Tomasko et al. 2008.""")
     parser.add_argument('wvln', type=float, help='Wavelength (m)')
     parser.add_argument('rm', type=float, help='Monomer radius (m)')
     parser.add_argument('N', type=int, help='Number of monomers')
-    parser.add_argument('-df', '--fractal-dimension', type=float, default=2.0,
-                        help='Fractal dimension')
+    parser.add_argument('--phase-function', '-p', action='store_true', 
+                        help='Display the phase function')
     parser.add_argument('--nang', type=int, default=NANG,
                         help='Number of angles for the phase function (0 -> pi/2)')
-    parser.add_argument('-f', '--force', action='store_true', 
+    parser.add_argument('--fractal-dimension', '-df', type=float, default=2.0,
+                        help='Fractal dimension')
+    parser.add_argument('--force', '-f', action='store_true',
                         help='Bypass validity checks')
-    parser.add_argument('-p', '--phase-function', action='store_true', 
-                        help='Display the phase function')
 
     args, others = parser.parse_known_args(argv)
 

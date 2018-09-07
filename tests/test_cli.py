@@ -9,9 +9,9 @@ def test_cli_fractal_tholins(capsys):
     out, err = capsys.readouterr()
 
     stdout = """# Cross sections:
-Scattering: 2.906e-12 m^-2
-Absorption: 1.281e-12 m^-2
-Extinction: 4.187e-12 m^-2
+Scattering: 2.715e-12 m^-2
+Absorption: 1.558e-12 m^-2
+Extinction: 4.273e-12 m^-2
 """
 
     assert out == stdout
@@ -23,11 +23,11 @@ def test_cli_fractal_tholins_phase_function(capsys):
     out, err = capsys.readouterr()
 
     stdout = """# Phase function
-0.0\t5.87e+02
+0.0\t5.88e+02
 45.0\t2.49e+00
 90.0\t5.37e-01
-135.0\t3.55e-01
-180.0\t3.70e-01
+135.0\t3.51e-01
+180.0\t3.63e-01
 """
 
     assert out == stdout

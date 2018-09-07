@@ -8,7 +8,7 @@ from .mie import NANG, mie
 from .fractals import FORCE, fractals
 
 DB_NAME = 'optical_index.db'
-TABLE = 'Tholins_CVD'
+TABLE = 'Tholins_Doose'
 
 class Database(object):
     """Optical indexes constant database"""
@@ -65,13 +65,14 @@ def index_tholins(wvln, db=Database()):
 
         Note
         ----
-            The values are extrapolated as constant for wavelengths above 314 um and
-            below 20 nm.
+            The values are extrapolated as constant for wavelengths above and
+            below the maximum and minimum values in the database.
             In between,
                 - the real part is linear interpolated
                 - the imaginary part is LOG interpolated
-            Between 935 nm and 1.5 um, the bump of the imaginary part is removed and
-            fixed at 7.19e-3.
+            
+            For 'Tholins_CVD' table between 935 nm and 1.5 um, the bump of the
+                imaginary part is removed and fixed at 7.19e-3.
         """
 
         # Convert wavelength meters in micrometers
@@ -108,8 +109,8 @@ def index_tholins(wvln, db=Database()):
         # Imaginary part is LOG interpolated
         ni = np.exp(np.log(ni_inf) + factor*(np.log(ni_sup)-np.log(ni_inf)))
 
-        # Remove the bump @ 1 um
-        if wvln >= .935 and wvln <= 1.5:
+        # Remove the bump @ 1 um (only for Tholin_CVD)
+        if db.table == 'Tholins_CVD' and wvln >= .935 and wvln <= 1.5:
             ni = 7.19e-3
         return nr, ni
 
@@ -117,7 +118,7 @@ def index_tholins(wvln, db=Database()):
 def mie_tholins(wvln, r, nang=NANG, db=Database()):
     """
     Mie cross-sections and phase function for tholin particule.
-    Use default tholins indexes (CVD) and Bohren and Huffman theory.
+    Use default tholins indexes and Bohren and Huffman theory.
 
     Input
     ------
@@ -143,7 +144,7 @@ def mie_tholins(wvln, r, nang=NANG, db=Database()):
 def fractals_tholins(wvln, rm, Df, N, nang=NANG, force=FORCE, db=Database()):
     """
     Fractals cross-sections and phase function for tholin aggregate.
-    Use default tholins indexes (CVD) and Tomasko et al. 2008.
+    Use default tholins indexes and Tomasko et al. 2008.
 
     Input
     ------

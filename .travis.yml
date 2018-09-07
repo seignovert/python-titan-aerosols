@@ -1,10 +1,24 @@
 sudo: false
 language: python
-python: 3.6
-install: pip install tox-travis python-coveralls
-script: tox
+cache: pip
+
+stages:
+  - name: test
+  - name: deploy
+    if: tag IS present
+
+python:
+    - "3.6"
+
+# test stage
+install:
+    - pip install tox-travis python-coveralls
+script:
+    - tox
 after_success:
-- coveralls
+    - coveralls
+
+# other stages
 jobs:
   include:
   - stage: deploy

@@ -39,11 +39,11 @@ def test_wvln_sup():
         
 def test_mie():
     qsct, qext, qabs, gg, theta, P = mie_tholins(300e-9, 50e-9)
-    assert qsct == 3.256812556887943e-15
-    assert qabs == 6.0880464818229446e-15
-    assert gg == 0.25734589112794115
-    assert P[0] == 2.5061596742176055
-    assert P[-1] == 0.7083061257489704
+    assert qsct == pytest.approx(3.256812556887943e-15, 1e-6)
+    assert qabs == pytest.approx(6.0880464818229446e-15, 1e-6)
+    assert gg == pytest.approx(0.25734589112794115, 1e-6)
+    assert P[0] == pytest.approx(2.5061596742176055, 1e-6)
+    assert P[-1] == pytest.approx(0.7083061257489704, 1e-6)
 
     
 def test_fractals():
@@ -51,25 +51,25 @@ def test_fractals():
     Table 3 outputs"""
     qsct, qext, qabs, gg, theta, P = fractals_tholins(
         338e-9, 60e-9, 2.0, 266, db=Database(table='Tholins_CVD'))
-    assert abs(qsct - 2.9e-12) < 0.1e-12
-    assert abs(qext - 4.2e-12) < 0.1e-12
-    assert abs(qabs - 1.3e-12) < 0.1e-12
-    assert abs(P[0] - 185.8) < 0.1
-    assert abs(P[1] - 178.1) < 0.1
-    assert abs(P[2] - 157.2) < 0.1
-    assert abs(P[4] - 98.9) < 0.1
-    assert abs(P[6] - 52.6) < 0.1
-    assert abs(P[8] - 28.4) < 0.1
-    assert abs(P[10] - 17.4) < 0.1
-    assert abs(P[15] - 8.0) < 0.1
-    assert abs(P[20] - 4.7) < 0.1
-    assert abs(P[30] - 2.2) < 0.1
-    assert abs(P[40] - 1.1) < 0.1
-    assert abs(P[50] - 0.58) < 0.01
-    assert abs(P[60] - 0.36) < 0.01
-    assert abs(P[80] - 0.21) < 0.01
-    assert abs(P[100] - 0.144) < 0.001
-    assert abs(P[120] - 0.117) < 0.001
-    assert abs(P[140] - 0.112) < 0.001
-    assert abs(P[160] - 0.115) < 0.001
-    assert abs(P[180] - 0.117) < 0.001
+    assert qsct == pytest.approx(2.9e-12, abs=0.1e-12)
+    assert qext == pytest.approx(4.2e-12, abs=0.1e-12)
+    assert qabs == pytest.approx(1.3e-12, abs=0.1e-12)
+    assert P[0] == pytest.approx(185.8, abs=0.1)
+    assert P[1] == pytest.approx(178.1, abs=0.1)
+    assert P[2] == pytest.approx(157.2, abs=0.1)
+    assert P[4] == pytest.approx(98.9, abs=0.1)
+    assert P[6] == pytest.approx(52.6, abs=0.1)
+    assert P[8] == pytest.approx(28.4, abs=0.1)
+    assert P[10] == pytest.approx(17.4, abs=0.1)
+    assert P[15] == pytest.approx(8.0, abs=0.1)
+    assert P[20] == pytest.approx(4.7, abs=0.1)
+    assert P[30] == pytest.approx(2.2, abs=0.1)
+    assert P[40] == pytest.approx(1.1, abs=0.1)
+    assert P[50] == pytest.approx(0.58, abs=0.01)
+    assert P[60] == pytest.approx(0.36, abs=0.01)
+    assert P[80] == pytest.approx(0.21, abs=0.01)
+    assert P[100] == pytest.approx(0.144, abs=1e-3)
+    assert P[120] == pytest.approx(0.117, abs=1e-3)
+    assert P[140] == pytest.approx(0.112, abs=1e-3)
+    assert P[160] == pytest.approx(0.115, abs=1e-3)
+    assert P[180] == pytest.approx(0.117, abs=1e-3)

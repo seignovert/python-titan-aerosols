@@ -14,22 +14,22 @@ Xm = 2. * np.pi * rm / wvln
 
 def test_fracts():
     qsct, qext, qabs, gg, theta, P = fractals(wvln, nr, ni, rm, Df, N)
-    assert qsct == 2.9318512910130787e-12
-    assert qabs == 1.28328626290106e-12
-    assert abs(qabs + qsct - qext) < 0.001e-12
+    assert qsct == pytest.approx(2.9318512910130787e-12, 1e-6)
+    assert qabs == pytest.approx(1.28328626290106e-12, 1e-6)
+    assert qabs + qsct == pytest.approx(qext, 1e-6)
     assert gg is None
     assert theta[0] == 0
     assert theta[-1] == np.pi
     assert len(theta) == 181
-    assert abs(P[0] - 185.8) < 0.1
-    assert abs(P[-1] - 0.117) < 0.001
+    assert P[0] == pytest.approx(185.8, abs=0.1)
+    assert P[-1] == pytest.approx(0.117, abs=1e-3)
     assert len(P) == 181
 
 def test_small_agg():
     Qs, Qa, Qe, _, _, _, _, _, _ = fractals_tomasko_2008(Df, 2, Xm, nr, ni)
-    assert Qs == 0.6914269156771599
-    assert Qa == 0.7118033316751097
-    assert Qe == 1.4032302473522695
+    assert Qs == pytest.approx(0.6914269156771599, 1e-6)
+    assert Qa == pytest.approx(0.7118033316751097, 1e-6)
+    assert Qe == pytest.approx(1.4032302473522695, 1e-6)
 
 def test_df_err():
     with pytest.raises(ValueError):

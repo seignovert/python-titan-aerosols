@@ -8,13 +8,13 @@ Titan aerosols models
 .. |Coverage| image:: https://coveralls.io/repos/github/seignovert/python-titan-aerosols/badge.svg?branch=master
         :target: https://coveralls.io/github/seignovert/python-titan-aerosols?branch=master
 .. |PyPI| image:: https://img.shields.io/badge/PyPI-aerosols--scattering-blue.svg
-        :target: https://pypi.python.org/project/titan-aerosols
+        :target: https://pypi.org/project/titan-aerosols/
 .. |Status| image:: https://img.shields.io/pypi/status/titan-aerosols.svg?label=Status
-        :target: https://pypi.python.org/project/titan-aerosols
+        :target: https://pypi.org/project/titan-aerosols/
 .. |Version| image:: https://img.shields.io/pypi/v/titan-aerosols.svg?label=Version
-        :target: https://pypi.python.org/project/titan-aerosols
+        :target: https://pypi.org/project/titan-aerosols/
 .. |Python| image:: https://img.shields.io/pypi/pyversions/titan-aerosols.svg?label=Python
-        :target: https://pypi.python.org/project/titan-aerosols
+        :target: https://pypi.org/project/titan-aerosols/
 .. |License| image:: https://img.shields.io/pypi/l/titan-aerosols.svg?label=License
         :target: https://pypi.python.org/project/titan-aerosols
 

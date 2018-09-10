@@ -2,37 +2,33 @@ sudo: false
 language: python
 cache: pip
 
+python: 3.6
+
 stages:
   - name: test
   - name: deploy
     if: tag IS present
 
-python:
-    - "3.6"
-
-# test stage
-install:
-    - pip install tox-travis python-coveralls
-script:
-    - tox
-after_success:
-    - coveralls
-
-# other stages
 jobs:
   include:
-  - stage: deploy
-    if: tag IS present
-    script: echo 'Deploy to PyPi...'
-    python: 3.6
-    env: PBR_VERSION=$TRAVIS_TAG
-    deploy:
-      provider: pypi
-      user: seignovert
-      password:
-        secure: vdxXT01mFSZ2X+o2c1V/x8algqXR+DdX+MQ4i+siti3WC41PDr8dsMPHAhFbMndVVv2EcUxuUc8sF40eEHs+3G8TzS9lgGUH8Zuj7raOYsCVWPs3pPW4ewHKBxk/fd7RfUUSsEEAylzIHU5j3+mcRvxYMgB2ltpTEi4MZ3LqzAFmYfugQ3GWPAzTgpA2Zah4akzexaPFTdtzoSngziPmOfIVGNB33cMABWcDjPHFVW1PlEipLbk9+V8B4A9UrSoAGJ6DG+X+PCnuA0fP5FuRE2M56aejnmId/QeAeHcGf8o+Vczk79AOe7iKqRFBB1y8gL48doVx/9dn3fgbbXz7YOKUITTbYS6779+X+XCOOIoqOFvTvAABikGvQNAYrYBpvV333ac3JyFD/8hyoLOYYFCd9JUA5sRlqOnugxH06eD9VUvg0YVt3pDIs9TY0B+285722sZoPqTr1Uu6suLs0R6c3uduWzaEbZDNWPVa9csrSl8tNpi8Mr5sTGzHxwozGzdjMwCWnyxMbHfLbgSA4AaekVJF5fQNE3yMNnBEBrvrollvTyRdZqRMqNWw7JyY+Yu9MPJsRP99yRsQowTy63p6NfE52og2S1TAQqOIOsJQ3cBT7p4h7Er3Xd/TNM14ViIRsYTEHg8Itu2mq4s8JdmK5f7Tl7u39hVcFN42zEY=
-      skip_cleanup: true
-      distributions: sdist bdist_wheel
-      on:
-        tags: true
-        all_branches: true
+    - stage: test
+      install:
+          - pip install tox-travis python-coveralls
+      script:
+          - tox
+      after_success:
+          - coveralls
+
+    - stage: deploy
+      script: echo 'Deploy to PyPi...'    
+      env: PBR_VERSION=$TRAVIS_TAG
+      deploy:
+        provider: pypi
+        user: seignovert
+        password:
+          secure: vdxXT01mFSZ2X+o2c1V/x8algqXR+DdX+MQ4i+siti3WC41PDr8dsMPHAhFbMndVVv2EcUxuUc8sF40eEHs+3G8TzS9lgGUH8Zuj7raOYsCVWPs3pPW4ewHKBxk/fd7RfUUSsEEAylzIHU5j3+mcRvxYMgB2ltpTEi4MZ3LqzAFmYfugQ3GWPAzTgpA2Zah4akzexaPFTdtzoSngziPmOfIVGNB33cMABWcDjPHFVW1PlEipLbk9+V8B4A9UrSoAGJ6DG+X+PCnuA0fP5FuRE2M56aejnmId/QeAeHcGf8o+Vczk79AOe7iKqRFBB1y8gL48doVx/9dn3fgbbXz7YOKUITTbYS6779+X+XCOOIoqOFvTvAABikGvQNAYrYBpvV333ac3JyFD/8hyoLOYYFCd9JUA5sRlqOnugxH06eD9VUvg0YVt3pDIs9TY0B+285722sZoPqTr1Uu6suLs0R6c3uduWzaEbZDNWPVa9csrSl8tNpi8Mr5sTGzHxwozGzdjMwCWnyxMbHfLbgSA4AaekVJF5fQNE3yMNnBEBrvrollvTyRdZqRMqNWw7JyY+Yu9MPJsRP99yRsQowTy63p6NfE52og2S1TAQqOIOsJQ3cBT7p4h7Er3Xd/TNM14ViIRsYTEHg8Itu2mq4s8JdmK5f7Tl7u39hVcFN42zEY=
+        skip_cleanup: true
+        distributions: sdist bdist_wheel
+        on:
+          tags: true
+          all_branches: true

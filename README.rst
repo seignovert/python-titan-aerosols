@@ -1,7 +1,7 @@
-===============================
 Titan aerosols models
-===============================
-|Build| |Coverage| |PyPI| |Status| |Version| |Python| |License|
+=====================
+
+|Build| |Coverage| |PyPI| |Status| |Version| |Python| |License| |Citation|
 
 .. |Build| image:: https://travis-ci.org/seignovert/python-titan-aerosols.svg?branch=master
         :target: https://travis-ci.org/seignovert/python-titan-aerosols
@@ -16,7 +16,9 @@ Titan aerosols models
 .. |Python| image:: https://img.shields.io/pypi/pyversions/titan-aerosols.svg?label=Python
         :target: https://pypi.org/project/titan-aerosols/
 .. |License| image:: https://img.shields.io/pypi/l/titan-aerosols.svg?label=License
-        :target: https://pypi.python.org/project/titan-aerosols
+        :target: https://pypi.org/project/titan-aerosols/
+.. |Citation| image:: https://zenodo.org/badge/147735627.svg
+        :target: https://zenodo.org/badge/latestdoi/147735627
 
 Python package for Titan's aerosols models
 

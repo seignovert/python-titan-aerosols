@@ -7,8 +7,8 @@ FORCE = False
 
 def fractals_tomasko_2008(Df, N, Xm, nr, ni, nang=NANG, force=FORCE):
     """
-    Compute mie scattering based on Tomasko et al. 2008 empirical model.
-    DOI: 10.1016/j.pss.2007.11.019
+    Compute fractal aerosols scattering based on Tomasko et al. 2008
+    empirical model (DOI: 10.1016/j.pss.2007.11.019).
 
     Input
     ------

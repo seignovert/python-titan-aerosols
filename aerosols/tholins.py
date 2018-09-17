@@ -79,7 +79,7 @@ def index_tholins(wvln, db=Database()):
         wvln *= 1.e6
 
         # Values SUP
-        db.execute("SELECT wvln, nr, ni FROM {} WHERE wvln >= {} ORDER BY wvln ASC LIMIT 1".format(db.table, wvln))
+        db.execute("SELECT wvln, nr, ni FROM {} WHERE wvln >= {:.4f} ORDER BY wvln ASC LIMIT 1".format(db.table, wvln))
         try:
             wvln_sup, nr_sup, ni_sup = db.fetchone()
         except TypeError:
@@ -89,7 +89,7 @@ def index_tholins(wvln, db=Database()):
             return nr, ni
 
         # Values INF
-        db.execute("SELECT wvln, nr, ni FROM {} WHERE wvln <= {} ORDER BY wvln DESC LIMIT 1".format(db.table, wvln))
+        db.execute("SELECT wvln, nr, ni FROM {} WHERE wvln <= {:.4f} ORDER BY wvln DESC LIMIT 1".format(db.table, wvln))
         try:
             wvln_inf, nr_inf, ni_inf = db.fetchone()
         except TypeError:
@@ -98,9 +98,13 @@ def index_tholins(wvln, db=Database()):
             print(">>WARNING: wvln = {:.3e} m < wvln_min_db = {:.3e} m => extrapolation cst".format(wvln, wvln_min*1.e-6))
             return nr, ni
 
+        # Remove the bump @ 1 um (only for Tholin_CVD)
+        if db.table == 'Tholins_CVD' and wvln >= .935 and wvln <= 1.5:
+            ni_sup = 7.19e-3
+
         # Known value (no interpolation)
         if wvln_sup == wvln_inf:
-            return nr_sup, ni_inf
+            return nr_sup, ni_sup
 
         # Interpolation factor (in LOG wvln)
         factor = (np.log(wvln)-np.log(wvln_inf)) / (np.log(wvln_sup) - np.log(wvln_inf))
@@ -109,9 +113,6 @@ def index_tholins(wvln, db=Database()):
         # Imaginary part is LOG interpolated
         ni = np.exp(np.log(ni_inf) + factor*(np.log(ni_sup)-np.log(ni_inf)))
 
-        # Remove the bump @ 1 um (only for Tholin_CVD)
-        if db.table == 'Tholins_CVD' and wvln >= .935 and wvln <= 1.5:
-            ni = 7.19e-3
         return nr, ni
 
 

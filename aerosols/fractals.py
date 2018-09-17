@@ -89,14 +89,14 @@ def fractals_tomasko_2008(Df, N, Xm, nr, ni, nang=NANG, force=FORCE):
 
     # A.2.1. Geometry
     #-----------------
-    Rmax = R1 * np.power(N * np.log(Rcut), 1/Df)   # (A.1a)
+    Rmax = R1 * np.power(N * np.log(Rcut), 1./Df)   # (A.1a)
     R0 = np.arange(Rmin, Rmax, 1/8.)
     if len(R0) < 100:
         R0 = np.linspace(Rmin, Rmax, 100)          # Nb pt > 100
 
     Nc = (  (1 - np.exp( -np.power(R0/R1, Df)/N ))
           * (1 - np.exp( -np.power(R0/R2, D_cut)))
-          + 2/N) / (1 + 2/N)                       # (A.1b)
+          + 2./N) / float(1 + 2./N)                # (A.1b)
     F0 = [Nc[0]]
     for ii in range(1, len(R0)-1):
         F0.append(.5 * (Nc[ii+1] - Nc[ii-1]))      # (A.1c)
@@ -143,7 +143,7 @@ def fractals_tomasko_2008(Df, N, Xm, nr, ni, nang=NANG, force=FORCE):
     Fc = []
     for tt in theta:
         # (A.5) # WARNING: sinc(x) = sin(pi.x)/(pi.x)
-        Fi = np.sinc(2 * DIST * np.sin(tt/2) / np.pi)
+        Fi = np.sinc(2 * DIST * np.sin(tt/2.) / np.pi)
         Fc.append(np.sum(np.multiply(Fi, F0)) * (N**2 - N) + N)  # (A.6)
 
     tau_coef = np.sum(np.divide(F0, DIST**2)) * (N-1)/(4*np.pi)  # (A.7a)
@@ -170,8 +170,8 @@ def fractals_tomasko_2008(Df, N, Xm, nr, ni, nang=NANG, force=FORCE):
 
     # A.2.6. Empirical correction for multiple scattering within aggregate
     #----------------------------------------------------------------------
-    depol = C_p11_m_1 * M0**2 / np.power(N-1, 2/3) * (1 + Polar_Ray) # (A.12a)
-    depol_ll = C_p11_m_2 * M0 * np.power(taus_out, E_p11_t_1)        # (A.12b)
+    depol = C_p11_m_1 * M0**2 / np.power(N-1, 2/3.) * (1 + Polar_Ray) # (A.12a)
+    depol_ll = C_p11_m_2 * M0 * np.power(taus_out, E_p11_t_1)         # (A.12b)
 
     if Xm <= 1.6:
         for ii in range(len(depol)):
@@ -210,8 +210,8 @@ def fractals_tomasko_2008(Df, N, Xm, nr, ni, nang=NANG, force=FORCE):
 
     # A.2.9. Efficiencies
     #---------------------
-    Qs_out = Csca / (np.pi * Xm**2 * np.power(N, 2/3)) * corr_sca  # (A.15a)
-    Qa_out = Cabs / (np.pi * Xm**2 * np.power(N, 2/3)) * corr_abs  # (A.10b + A.15b)
+    Qs_out = Csca / (np.pi * Xm**2 * np.power(N, 2/3.)) * corr_sca  # (A.15a)
+    Qa_out = Cabs / (np.pi * Xm**2 * np.power(N, 2/3.)) * corr_abs  # (A.10b + A.15b)
     Qe_out = Qs_out + Qa_out                                       # (A.15c)
 
     return Qs_out, Qa_out, Qe_out, P11_out, P22_out, P33_out, P44_out, P21_out, P43_out
@@ -246,9 +246,9 @@ def fractals(wvln, nr, ni, rm, Df, N, nang=NANG, force=FORCE):
     Xm = 2. * np.pi * rm / wvln
 
     Qs, Qa, Qe, P, _, _, _, _, _ = fractals_tomasko_2008(Df, N, Xm, nr, ni, nang, force)
-    qsct = Qs * np.pi * rm**2 * np.power(N, 2/3)
-    qext = Qe * np.pi * rm**2 * np.power(N, 2/3)
-    qabs = Qa * np.pi * rm**2 * np.power(N, 2/3)
+    qsct = Qs * np.pi * rm**2 * np.power(N, 2/3.)
+    qext = Qe * np.pi * rm**2 * np.power(N, 2/3.)
+    qabs = Qa * np.pi * rm**2 * np.power(N, 2/3.)
     theta = np.linspace(0, np.pi, len(P))
     gg = None  # <- Not calculated
 

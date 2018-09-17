@@ -92,7 +92,7 @@ def mie_bohren_huffman(x, refrel, nang=NANG):
     nstop = int(xstop)
     for n in range(0, nstop):
         en = n + 1
-        fn = (2 * en + 1)/(en * (en + 1))
+        fn = (2 * en + 1)/float(en * (en + 1))
 
     # for given N, PSI  = psi_n        CHI  = chi_n
     #              PSI1 = psi_{n-1}    CHI1 = chi_{n-1}
@@ -116,13 +116,13 @@ def mie_bohren_huffman(x, refrel, nang=NANG):
 
     #*** Augment sums for Qsca and g=<np.cos(theta)>
         qsca += (2 * en + 1) * (abs(an)**2 + abs(bn)**2)
-        gsca += ((2 * en + 1) / (en * (en + 1))) * \
+        gsca += ((2 * en + 1) / float(en * (en + 1))) * \
             (np.real(an) * np.real(bn) + np.imag(an) * np.imag(bn))
 
         if (n > 0):
-            gsca += ((en - 1) * (en + 1)/en) * \
-            (np.real(an1) * np.real(an) + np.imag(an1) * np.imag(an) + \
-             np.real(bn1) * np.real(bn) + np.imag(bn1) * np.imag(bn))
+            gsca += ((en - 1) * (en + 1)/float(en)) * \
+                (np.real(an1) * np.real(an) + np.imag(an1) * np.imag(an) +
+                 np.real(bn1) * np.real(bn) + np.imag(bn1) * np.imag(bn))
 
     #*** Now calculate scattering intensity pattern
     #    First do angles from 0 to 90
@@ -149,7 +149,7 @@ def mie_bohren_huffman(x, refrel, nang=NANG):
     #*** Compute pi_n for next value of n
     #    For each angle J, compute pi_n+1
     #    from PI = pi_n , PI0 = pi_n-1
-        pi1 = ((2 * en + 1) * mu * pi - (en + 1) * pi0) / en
+        pi1 = ((2 * en + 1) * mu * pi - (en + 1) * pi0) / float(en)
         pi0 = np.copy(pi)
 
     #*** Have summed sufficient terms.

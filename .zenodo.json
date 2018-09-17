@@ -1,0 +1,32 @@
+{
+    "title": "Titan aerosol models", 
+    "description": "<p><strong>Install</strong></p>\n\n<p>With <code>pip</code>:</p>\n\n<pre><code class=\"language-bash\">$ pip install titan-aerosols</code></pre>\n\n<p>Or directly from the <code>source files</code>:</p>\n\n<pre><code class=\"language-bash\">$ git clone https://github.com/seignovert/python-titan-aerosols.git\n$ cd python-titan-aerosols ; python setup.py install</code></pre>\n\n<p><strong>Python usage</strong></p>\n\n<pre><code class=\"language-python\">&gt;&gt;&gt; from aerosols import index_tholins\n\n&gt;&gt;&gt; nr, ni = index_tholins(338e-9)\n(1.6489699384541059, 0.2392676321412895)\n\n\n&gt;&gt;&gt; from aerosols import mie_tholins\n\n&gt;&gt;&gt; wvln = 338e-9 # Wavelength (m)\n&gt;&gt;&gt; rm = 50e-9 # Monomer radius (m)\n\n&gt;&gt;&gt; qsct, qext, qabs, gg, theta, P = mie_tholins(wvln, rm)\n(2.150748326506086e-15,\n6.519732093912762e-15,\n4.368983767406676e-15,\n0.19301947916187234,\narray([0., 0.01745329, ..., 3.14159265]),\narray([2.23653193, ..., 0.88785229]))\n\n\n&gt;&gt;&gt; from aerosols import fractals_tholins\n\n&gt;&gt;&gt; Df = 2.0\n&gt;&gt;&gt; N = 266\n\n&gt;&gt;&gt; qsct, qext, qabs, gg, theta, P = fractals_tholins(wvln, rm, Df, N)\n(1.5986535423863113e-12,\n2.5652821769307767e-12,\n9.666286345444654e-13,\nNone,\narray([0, ..., 3.14159265]),\narray([135.83547352468324, ..., 0.16033083012643]))\n\n&gt;&gt;&gt; N = 3000\n\n&gt;&gt;&gt; qsct, qext, qabs, gg, theta, P = fractals_tholins(wvln, rm, Df, N)\nValueError: Model tested only for N = 2 - 1024 (received N=3000)\n\n&gt;&gt;&gt; qsct, qext, qabs, gg, theta, P = fractals_tholins(wvln, rm, Df, N, force=True)\n(1.877008401099561e-11,\n2.829777018602765e-11,\n9.527686175032043e-12,\nNone,\narray([0, ..., 3.14159265]),\narray([1.20358413e+03, ..., 1.27914327e-01]))\n\n\n&gt;&gt;&gt; from aerosols import mie\n\n&gt;&gt;&gt; qsct, qext, qabs, gg, theta, P = mie_tholins(wvln, nr, ni, rm)\n(...)\n\n&gt;&gt;&gt; from aerosols import fractals\n\n&gt;&gt;&gt; qsct, qext, qabs, gg, theta, P = fractals(wvln, nr, ni, rm, Df, N)\n(...)</code></pre>\n\n<p><strong>CLI usage</strong></p>\n\n<pre><code class=\"language-bash\">$ fractal_tholins --help\nusage: fractal_tholins [-h] [--phase-function] [--nang NANG]\n                   [--fractal-dimension FRACTAL_DIMENSION] [--force]\n                   wvln rm N\nFractals cross-sections and phase function for tholin aggregate. Use default\ntholins indexes (CVD) and Tomasko et al. 2008.\n\npositional arguments:\nwvln                  Wavelength (m)\nrm                    Monomer radius (m)\nN                     Number of monomers\n\noptional arguments:\n-h, --help            show this help message and exit\n--phase-function, -p  Display the phase function\n--nang NANG           Number of angles for the phase function (0 -&gt; pi/2)\n--fractal-dimension FRACTAL_DIMENSION, -df FRACTAL_DIMENSION\n                        Fractal dimension\n--force, -f           Bypass validity checks\n\n\n$ fractal_tholins 338e-9 60e-9 266\n# Cross sections:\nScattering: 2.715e-12 m^-2\nAbsorption: 1.558e-12 m^-2\nExtinction: 4.273e-12 m^-2\n\n\n$ fractal_tholins -p 338e-9 60e-9 266\n# Phase function\n0.0     1.86e+02\n1.0     1.78e+02\n...\n179.0   1.15e-01\n180.0   1.15e-01\n\n\n$ fractal_tholins -p --nang 10 338e-9 60e-9 266\n# Phase function\n0.0     2.52e+02\n10.0    2.37e+01\n...\n170.0   1.55e-01\n180.0   1.56e-01\n\n\n$ fractal_tholins -df 2.3 338e-9 60e-9 266\nModel tested only for Df = 2 (received Df=2.30)\n\n\n$ fractal_tholins 338e-9 60e-9 266 -df 2.3 --force\n# Cross sections:\nScattering: 2.657e-12 m^-2\nAbsorption: 1.351e-12 m^-2\nExtinction: 4.008e-12 m^-2</code></pre>\n\n\n\n<p>This package is an early attempt to model Titan&#39;s aerosols scattering based on Tomasko et al. 2008 paper (doi:<a href=\"https://dx.doi.org/10.1016/j.pss.2007.11.019\">10.1016/j.pss.2007.11.019</a>)</p>", 
+    "license": {
+        "id": "MIT"
+    }, 
+    "access_right": "open",
+    "upload_type": "software", 
+    "creators": [
+        {
+            "affiliation": "LPG Nantes", 
+            "name": "Benoît Seignovert",
+            "orcid": "0000-0001-6533-275X"
+        },
+        {
+            "affiliation": "Universit&eacute; de Reims Champagne-Ardenne", 
+            "name": "Pascal Rannou"
+        }
+    ], 
+    "related_identifiers": [
+        {
+            "scheme": "url", 
+            "identifier": "https://github.com/seignovert/python-titan-aerosols/", 
+            "relation": "isSupplementTo"
+        }, 
+        {
+            "scheme": "doi", 
+            "identifier": "10.5281/zenodo.1412277", 
+            "relation": "isVersionOf"
+        }
+    ]
+}

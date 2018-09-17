@@ -34,19 +34,19 @@ def fractals_tomasko_2008(Df, N, Xm, nr, ni, nang=NANG, force=FORCE):
     if not force:
         # Fractal dimension
         if Df != 2:
-            raise ValueError(f"Model tested only for Df = 2 (received Df={Df:.2f})")
+            raise ValueError("Model tested only for Df = 2 (received Df={:.2f})".format(Df))
         # Number of monomers per aggregate
         if N < 2 or N > 1024:
-            raise ValueError(f"Model tested only for N = 2 - 1024 (received N={N})")
+            raise ValueError("Model tested only for N = 2 - 1024 (received N={})".format(N))
         # Monomer size parameter
         if Xm < 1.e-4 or Xm > 1.5:
-            raise ValueError(f"Model tested only for Xm = 1.e-4 - 1.5 (received Xm={Xm:.2e})")
+            raise ValueError("Model tested only for Xm = 1.e-4 - 1.5 (received Xm={:.2e})".format(Xm))
         # Real part of index of refraction
         if nr < 1.3 or nr > 2:
-            raise ValueError(f"Model tested only for nr = 1.3 - 2 (received nr={nr:.2f})")
+            raise ValueError("Model tested only for nr = 1.3 - 2 (received nr={:.2f})".format(nr))
         # Imaginary part of index of refraction
         if ni < 0.0 or ni > .7:
-            raise ValueError(f"Model tested only for ni = 0.0 - 0.7 (received ni={ni:.2f})")
+            raise ValueError("Model tested only for ni = 0.0 - 0.7 (received ni={:.2f})".format(ni))
 
     #-----------------------------------------
     # Table A2: Empirical parameters required

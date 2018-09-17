@@ -25,16 +25,16 @@ class Database(object):
         )
 
         if not os.path.isfile(self.path):
-            raise IOError(f"Database not found: {self.path}")
+            raise IOError("Database not found: {}".format(self.path))
 
         self.con = sqlite.connect(self.path)
         self.db = self.con.cursor()
     
     def set_table(self, table):
         """Check table exists in the database"""
-        self.db.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table}'")
+        self.db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='{}'".format(table))
         if not self.db.fetchone():
-            raise AttributeError(f"Table {table} not found in the database")
+            raise AttributeError("Table {} not found in the database".format(table))
         self.table = table
 
     def fetchone(self):
@@ -79,23 +79,23 @@ def index_tholins(wvln, db=Database()):
         wvln *= 1.e6
 
         # Values SUP
-        db.execute(f"SELECT wvln, nr, ni FROM {db.table} WHERE wvln >= {wvln} ORDER BY wvln ASC LIMIT 1")
+        db.execute("SELECT wvln, nr, ni FROM {} WHERE wvln >= {} ORDER BY wvln ASC LIMIT 1".format(db.table, wvln))
         try:
             wvln_sup, nr_sup, ni_sup = db.fetchone()
         except TypeError:
-            db.execute(f"SELECT MAX(wvln), nr, ni FROM {db.table}")
+            db.execute("SELECT MAX(wvln), nr, ni FROM {}".format(db.table))
             wvln_max, nr, ni = db.fetchone()
-            print(f">>WARNING: wvln = {wvln:.3e} m > wvln_max_db = {wvln_max*1.e-6:.3e} m => extrapolation cst")
+            print(">>WARNING: wvln = {:.3e} m > wvln_max_db = {:.3e} m => extrapolation cst".format(wvln, wvln_max*1.e-6))
             return nr, ni
 
         # Values INF
-        db.execute(f"SELECT wvln, nr, ni FROM {db.table} WHERE wvln <= {wvln} ORDER BY wvln DESC LIMIT 1")
+        db.execute("SELECT wvln, nr, ni FROM {} WHERE wvln <= {} ORDER BY wvln DESC LIMIT 1".format(db.table, wvln))
         try:
             wvln_inf, nr_inf, ni_inf = db.fetchone()
         except TypeError:
-            db.execute(f"SELECT MIN(wvln), nr, ni FROM {db.table}")
+            db.execute("SELECT MIN(wvln), nr, ni FROM {}".format(db.table))
             wvln_min, nr, ni = db.fetchone()
-            print(f">>WARNING: wvln = {wvln:.3e} m < wvln_min_db = {wvln_min*1.e-6:.3e} m => extrapolation cst")
+            print(">>WARNING: wvln = {:.3e} m < wvln_min_db = {:.3e} m => extrapolation cst".format(wvln, wvln_min*1.e-6))
             return nr, ni
 
         # Known value (no interpolation)

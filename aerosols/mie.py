@@ -31,11 +31,10 @@ def mie_bohren_huffman(x, refrel, nang=NANG):
     Source: http://scatterlib.googlecode.com/files/bhmie_herbert_kaiser_july2012.py
     """
     if (nang > 1000):
-        raise AttributeError(f"Require NANG = {nang} <= 1000")
+        raise AttributeError("Require NANG = {} <= 1000".format(nang))
 
     if (nang < 2):
-        raise AttributeError(
-            f"Require NANG = {nang} > 1 in order to calculate scattering intensities")
+        raise AttributeError("Require NANG = {} > 1 in order to calculate scattering intensities".format(nang))
 
     ang = .5 * np.pi / (nang-1)
     mu = np.cos(np.arange(0, nang, 1) * ang)
@@ -58,7 +57,7 @@ def mie_bohren_huffman(x, refrel, nang=NANG):
     # Conclusion: we are indeed retaining enough terms in series!
 
     if (nmx > NMXX):
-        raise ValueError(f"nmx = {nmx} > NMXX = {NMXX} for |m|x = {ymod}")
+        raise ValueError("nmx = {} > NMXX = {} for |m|x = {}".format(nmx, NMXX, ymod))
     
     s1_1 = np.zeros(nang, dtype=np.complex128)
     s1_2 = np.zeros(nang, dtype=np.complex128)

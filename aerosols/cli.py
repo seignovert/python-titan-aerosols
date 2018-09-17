@@ -32,12 +32,12 @@ Use default tholins indexes (CVD) and Tomasko et al. 2008.""")
         return
     
     if not args.phase_function:
-        print(f"# Cross sections:")
-        print(f"Scattering: {qsct:.3e} m^-2")
-        print(f"Absorption: {qabs:.3e} m^-2")
-        print(f"Extinction: {qext:.3e} m^-2")
+        print("# Cross sections:")
+        print("Scattering: {:.3e} m^-2".format(qsct))
+        print("Absorption: {:.3e} m^-2".format(qabs))
+        print("Extinction: {:.3e} m^-2".format(qext))
     else:
-        print(f"# Phase function")
+        print("# Phase function")
         for t,p in zip(np.degrees(theta), P):
-            print(f"{t:.1f}\t{p:.2e}")
+            print("{:.1f}\t{:.2e}".format(t,p))
 

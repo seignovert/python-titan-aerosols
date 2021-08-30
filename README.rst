@@ -87,17 +87,18 @@ Python usage
      None,
      array([0, ..., 3.14159265]),
      array([1.20358413e+03, ..., 1.27914327e-01]))
-    
 
     >>> from aerosols import mie
 
-    >>> qsct, qext, qabs, gg, theta, P = mie_tholins(wvln, nr, ni, rm)
+    >>> qsct, qext, qabs, gg, theta, P = mie(wvln, nr, ni, rm)
     (...)
 
     >>> from aerosols import fractals
 
     >>> qsct, qext, qabs, gg, theta, P = fractals(wvln, nr, ni, rm, Df, N)
     (...)
+
+A static notebook is also available `here <https://nbviewer.jupyter.org/github/seignovert/python-titan-aerosols/blob/main/examples/Tholins_examples.ipynb>`_.
 
 
 CLI usage

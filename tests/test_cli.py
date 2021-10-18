@@ -1,6 +1,8 @@
 """Test CLI module."""
+# pylint: disable=missing-function-docstring
 
 from aerosols.cli import cli_fractal_tholins
+
 
 def test_cli_fractal_tholins(capsys):
     argv = '338e-9 60e-9 266'.split()
@@ -16,6 +18,7 @@ def test_cli_fractal_tholins(capsys):
 
     assert out == stdout
     assert err == ''
+
 
 def test_cli_fractal_tholins_phase_function(capsys):
     argv = '-p --nang 3 338e-9 60e-9 266'.split()

@@ -21,15 +21,15 @@ def test_fracts():
     assert theta[0] == 0
     assert theta[-1] == np.pi
     assert len(theta) == 181
-    assert P[0] == pytest.approx(185.8, abs=0.1)
-    assert P[-1] == pytest.approx(0.117, abs=1e-3)
+    assert P[0] == pytest.approx(185.4, abs=0.1)
+    assert P[-1] == pytest.approx(0.119, abs=1e-3)
     assert len(P) == 181
 
 def test_small_agg():
     Qs, Qa, Qe, _, _, _, _, _, _ = fractals_tomasko_2008(Df, 2, Xm, nr, ni)
-    assert Qs == pytest.approx(0.6914269156771599, 1e-6)
-    assert Qa == pytest.approx(0.7118033316751097, 1e-6)
-    assert Qe == pytest.approx(1.4032302473522695, 1e-6)
+    assert Qs == pytest.approx(0.689494, 1e-6)
+    assert Qa == pytest.approx(0.723443, 1e-6)
+    assert Qe == pytest.approx(1.412938, 1e-6)
 
 def test_df_err():
     with pytest.raises(ValueError):

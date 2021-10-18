@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-import pytest
+"""Test CLI module."""
 
 from aerosols.cli import cli_fractal_tholins
 
@@ -8,11 +7,12 @@ def test_cli_fractal_tholins(capsys):
     cli_fractal_tholins(argv)
     out, err = capsys.readouterr()
 
-    stdout = """# Cross sections:
-Scattering: 2.715e-12 m^-2
-Absorption: 1.558e-12 m^-2
-Extinction: 4.273e-12 m^-2
-"""
+    stdout = (
+        '# Cross sections:\n'
+        'Scattering: 2.704e-12 m^-2\n'
+        'Absorption: 1.585e-12 m^-2\n'
+        'Extinction: 4.289e-12 m^-2\n'
+    )
 
     assert out == stdout
     assert err == ''
@@ -22,13 +22,14 @@ def test_cli_fractal_tholins_phase_function(capsys):
     cli_fractal_tholins(argv)
     out, err = capsys.readouterr()
 
-    stdout = """# Phase function
-0.0\t5.88e+02
-45.0\t2.49e+00
-90.0\t5.37e-01
-135.0\t3.51e-01
-180.0\t3.63e-01
-"""
+    stdout = (
+        '# Phase function\n'
+        '0.0\t5.85e+02\n'
+        '45.0\t2.48e+00\n'
+        '90.0\t5.40e-01\n'
+        '135.0\t3.55e-01\n'
+        '180.0\t3.67e-01\n'
+    )
 
     assert out == stdout
     assert err == ''
@@ -43,5 +44,3 @@ def test_cli_fractal_tholins_value_err(capsys):
 
     assert out == stdout
     assert err == ''
-
-

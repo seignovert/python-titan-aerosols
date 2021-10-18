@@ -45,20 +45,25 @@ def test_mie():
     assert P[0] == pytest.approx(2.5061596742176055, 1e-6)
     assert P[-1] == pytest.approx(0.7083061257489704, 1e-6)
 
-    
+
 def test_fractals():
-    """Test based on Seignovert et al. (2017)](https://dx.doi.org/10.1016/j.icarus.2015.09.039)
-    Table 3 outputs"""
-    qsct, qext, qabs, gg, theta, P = fractals_tholins(
+    """Test based values against Seignovert et al. (2017) - Tab. 3.
+
+    https://doi.org/10.1016/j.icarus.2015.09.039
+
+    The values were adjusted after d21613b fix.
+
+    """
+    qsct, qext, qabs, _, _, P = fractals_tholins(
         338e-9, 60e-9, 2.0, 266, db=Database(table='Tholins_CVD'))
     assert qsct == pytest.approx(2.9e-12, abs=0.1e-12)
     assert qext == pytest.approx(4.2e-12, abs=0.1e-12)
     assert qabs == pytest.approx(1.3e-12, abs=0.1e-12)
-    assert P[0] == pytest.approx(185.8, abs=0.1)
-    assert P[1] == pytest.approx(178.1, abs=0.1)
-    assert P[2] == pytest.approx(157.2, abs=0.1)
-    assert P[4] == pytest.approx(98.9, abs=0.1)
-    assert P[6] == pytest.approx(52.6, abs=0.1)
+    assert P[0] == pytest.approx(185.4, abs=0.1)
+    assert P[1] == pytest.approx(177.7, abs=0.1)
+    assert P[2] == pytest.approx(156.8, abs=0.1)
+    assert P[4] == pytest.approx(98.7, abs=0.1)
+    assert P[6] == pytest.approx(52.5, abs=0.1)
     assert P[8] == pytest.approx(28.4, abs=0.1)
     assert P[10] == pytest.approx(17.4, abs=0.1)
     assert P[15] == pytest.approx(8.0, abs=0.1)
@@ -68,8 +73,8 @@ def test_fractals():
     assert P[50] == pytest.approx(0.58, abs=0.01)
     assert P[60] == pytest.approx(0.36, abs=0.01)
     assert P[80] == pytest.approx(0.21, abs=0.01)
-    assert P[100] == pytest.approx(0.144, abs=1e-3)
-    assert P[120] == pytest.approx(0.117, abs=1e-3)
-    assert P[140] == pytest.approx(0.112, abs=1e-3)
-    assert P[160] == pytest.approx(0.115, abs=1e-3)
-    assert P[180] == pytest.approx(0.117, abs=1e-3)
+    assert P[100] == pytest.approx(0.146, abs=1e-3)
+    assert P[120] == pytest.approx(0.119, abs=1e-3)
+    assert P[140] == pytest.approx(0.114, abs=1e-3)
+    assert P[160] == pytest.approx(0.117, abs=1e-3)
+    assert P[180] == pytest.approx(0.119, abs=1e-3)

@@ -34,7 +34,7 @@ jobs:
         pip install flake8-isort flake8 flake8-colors pep8-naming mccabe
 
     - name: Run flake8
-      run: flake8 setup.py --rcfile=setup.cfg $PACKAGE/ tests/
+      run: flake8 setup.py $PACKAGE/ tests/
 
   pylint:
     name: Linter - Pylint
@@ -55,7 +55,7 @@ jobs:
         pip install . pylint pytest
 
     - name: Run pylint
-      run: pylint $PACKAGE/ tests/*.py
+      run: pylint --rcfile=setup.cfg $PACKAGE/ tests/*.py
 
   tests:
     name: Unit tests, coverage and notebooks

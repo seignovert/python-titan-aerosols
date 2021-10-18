@@ -50,7 +50,7 @@ jobs:
         pip install . pylint pytest
 
     - name: Run pylint
-      run: pylint $PACKAGE/ tests/*.py
+      run: pylint --rcfile=setup.cfg $PACKAGE/ tests/*.py
 
   tests:
     name: Unit tests, coverage and notebooks

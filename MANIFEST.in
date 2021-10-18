@@ -1,0 +1,4 @@
+include README.md
+
+# Tholins database
+include aerosols/data/optical_index.db

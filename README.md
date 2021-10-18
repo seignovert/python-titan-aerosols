@@ -2,7 +2,7 @@ Titan aerosols models
 =====================
 
 [![](https://github.com/seignovert/python-titan-aerosols/workflows/Continuous%20Integration/badge.svg)][Build]
-[![](https://coveralls.io/repos/github/seignovert/python-titan-aerosols/badge.svg?branch=main)][Coverage]
+[![](https://img.shields.io/codecov/c/github/seignovert/python-titan-aerosols.svg?label=Codecov&logo=codecov&logoColor=white)][Coverage]
 [![](https://img.shields.io/badge/PyPI-aerosols--scattering-blue.svg)][PyPI]
 [![](https://img.shields.io/pypi/status/titan-aerosols.svg?label=Status)][Status]
 [![](https://img.shields.io/pypi/v/titan-aerosols.svg?label=Version)][Version]
@@ -11,7 +11,7 @@ Titan aerosols models
 [![](https://zenodo.org/badge/147735627.svg)][Citation]
 
 [Build]: https://github.com/seignovert/python-titan-aerosols/actions/workflows/actions.yml
-[Coverage]: https://coveralls.io/github/seignovert/python-titan-aerosols?branch=main
+[Coverage]: https://codecov.io/gh/seignovert/python-titan-aerosols
 [PyPI]: https://pypi.org/project/titan-aerosols/
 [Status]: https://pypi.org/project/titan-aerosols/
 [Version]: https://pypi.org/project/titan-aerosols/

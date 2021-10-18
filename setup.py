@@ -40,9 +40,9 @@ setup(
     ],
     long_description=README,
     long_description_content_type='text/markdown',
-    entry_points = {
+    entry_points={
         'console_scripts': [
-            'fractal_tholins = aerosols.cli:cli_fractal_tholins'
+            'fractal_tholins=aerosols.cli:cli_fractal_tholins'
         ]
     },
 )

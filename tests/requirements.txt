@@ -1,6 +1,11 @@
+# Linters
 pylint
 flake8-isort
 flake8
 pep8-naming
+# Unit tests
 pytest
 pytest-cov
+# Test notebook
+matplotlib
+nbval

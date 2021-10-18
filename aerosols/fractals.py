@@ -23,7 +23,7 @@ def fractals_tomasko_2008(Df, N, Xm, nr, ni, nang=NANG, force=FORCE):
 
     Output
     -------
-        Qs_out   Scattering efficiency 
+        Qs_out   Scattering efficiency
         Qs_out   Backscatter efficiency
         Qe_out   Extinction efficiency
         Pij      Funtions which correspond to the (complex) phase functions
@@ -134,7 +134,7 @@ def fractals_tomasko_2008(Df, N, Xm, nr, ni, nang=NANG, force=FORCE):
     Ray_21 = -.75 * np.sin(theta)**2           # (A.3b)
     Polar_Ray = -Ray_21 / Ray_11               # (A.3c)
     m = complex(nr, ni)                        # (A.3d)
-    M0 = abs((m**2 - 1)/(m*2 + 2))             # (A.3e)
+    M0 = abs((m**2 - 1)/(m**2 + 2))            # (A.3e)
 
     # A.2.3. Coherent scattering and optical depth
     #----------------------------------------------
@@ -253,5 +253,3 @@ def fractals(wvln, nr, ni, rm, Df, N, nang=NANG, force=FORCE):
     gg = None  # <- Not calculated
 
     return qsct, qext, qabs, gg, theta, P
-
-

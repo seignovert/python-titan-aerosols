@@ -212,9 +212,9 @@ def fractals_tomasko_2008(Df, N, Xm, nr, ni, nang=NANG, force=False):# noqa: dis
     # A.2.7. Linear Polarizartion
     # ----------------------------
     Mpol = 1 - C_p21_m_1 * M0 ** 2 / np.sqrt(N - 1) \
-             - C_p21_m_2 * M0 * Xm * E_p21_m_1      \
+             - C_p21_m_2 * (M0 * Xm) ** E_p21_m_1   \
         * np.exp(-C_p21_ta * taua_out)              \
-        * (N - 1) * E_p21_n_1                       \
+        * (N - 1) ** E_p21_n_1                      \
         * np.exp(C_p21_ts * taus_out)  # (A.13a)
 
     polar_agg = Polar_mon * Mpol       # (A.13b)

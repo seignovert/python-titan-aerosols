@@ -54,7 +54,7 @@ class Database:
         if not self.__fname.exists():
             raise FileNotFoundError(f"Database not found: {self}")
 
-        self.con = sqlite.connect(str(self.fname))
+        self.con = sqlite.connect(self.fname)
         self.db = self.con.cursor()
 
     @property

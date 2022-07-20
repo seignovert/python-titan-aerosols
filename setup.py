@@ -11,7 +11,7 @@ README = (HERE / 'README.md').read_text()
 
 setup(
     name='titan-aerosols',
-    version='0.3.1',
+    version='0.4.0',
     description='Titan aerosols models',
     author='Benoit Seignovert, Pascal Rannou, Loic Rossi',
     author_email='python@seignovert.fr',
